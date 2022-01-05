@@ -9,7 +9,8 @@ on:
 jobs:
   build:
 
-    runs-on: panoti/sdcc:stm8s
+    runs-on: ubuntu-latest
+    container: panoti/sdcc:stm8s
 
     steps:
     - uses: actions/checkout@v2
