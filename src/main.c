@@ -30,16 +30,36 @@
 #include "stm8s.h"
 
 /* Private defines -----------------------------------------------------------*/
+#define LED_GPIO_PORT (GPIOB)
+#define LED_GPIO_PIN  (GPIO_PIN_5)
+
 /* Private function prototypes -----------------------------------------------*/
+void Delay (uint16_t nCount);
+
 /* Private functions ---------------------------------------------------------*/
 
 void main(void)
 {
+  /* Initialize I/Os in Output Mode */
+  GPIO_Init(LED_GPIO_PORT, (GPIO_Pin_TypeDef)LED_GPIO_PIN, GPIO_MODE_OUT_PP_LOW_FAST);
+
   /* Infinite loop */
   while (1)
   {
+    /* Toggles LEDs */
+    GPIO_WriteReverse(LED_GPIO_PORT, (GPIO_Pin_TypeDef)LED_GPIO_PIN);
+    Delay(0xFFFF);
   }
   
+}
+
+void Delay(uint16_t nCount)
+{
+  /* Decrement nCount value */
+  while (nCount != 0)
+  {
+    nCount--;
+  }
 }
 
 #ifdef USE_FULL_ASSERT
